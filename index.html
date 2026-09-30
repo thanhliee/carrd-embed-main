@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Vi tar over meldinger, visninger, kontrakter og vask når du leier ut til studenter i Trondheim. Fra 1 500 kr/mnd per hus, alt inkludert. Ingen binding.">
+<title>Hybelhjelp Trondheim – Forvaltning for små utleiere</title>
+<style>
+:root{--bg:#fbf8f3;--fg:#1c2a2e;--mut:#5c6b6f;--card:#fff;--ac:#e2553f;--ac2:#14524f;--bd:#e8e1d6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+.w{max-width:1040px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.logo{font-weight:800;font-size:20px}.logo span{color:var(--ac)}
+.btn{display:inline-block;background:var(--ac);color:#fff;padding:13px 24px;border-radius:999px;font-weight:700;text-decoration:none;border:0;font-size:16px;cursor:pointer;text-align:center}
+.btn.o{background:none;color:var(--fg);border:2px solid var(--bd)}
+.hero{padding:48px 0 64px;text-align:center}
+h1{font-size:clamp(36px,7vw,64px);line-height:1.05;letter-spacing:-.03em;margin:0 0 18px}
+h1 em{color:var(--ac);font-style:normal}
+.lead{font-size:20px;color:var(--mut);max-width:640px;margin:0 auto 28px}
+.pill{display:inline-block;background:var(--card);border:1px solid var(--bd);border-radius:999px;padding:6px 14px;font-size:14px;color:var(--mut);margin-bottom:20px}
+.btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:20px}
+section{padding:56px 0}
+h2{font-size:clamp(26px,4vw,38px);line-height:1.15;letter-spacing:-.02em;margin:0 0 12px}
+.sub{color:var(--mut);margin:0 0 32px;max-width:640px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:22px}
+.card h3{margin:0 0 8px;font-size:18px;font-weight:800;letter-spacing:-.01em;line-height:1.3;color:var(--fg)}
+.card p{margin:0;color:var(--mut);font-size:15px;line-height:1.5}
+.band{background:var(--ac2);color:#fff;border-radius:24px;padding:36px 28px;text-align:center}
+.band p{font-size:clamp(20px,3vw,26px);margin:0;line-height:1.4}
+.tw{overflow-x:auto;border-radius:18px}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:18px;overflow:hidden;min-width:520px}
+th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--bd);font-size:15px}
+th{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+td:last-child{font-weight:700;color:var(--ac2)}
+.calc{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:center}
+.big{font-size:44px;font-weight:800;color:var(--ac2);letter-spacing:-.02em;line-height:1}
+ul.ck{list-style:none;padding:0;margin:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+ul.ck li::before{content:"✓ ";color:var(--ac);font-weight:800}
+details{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px 20px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700}
+details p{color:var(--mut);margin:10px 0 0;font-size:15px}
+form{display:grid;gap:12px;max-width:520px;margin:0 auto}
+input,textarea{font:inherit;padding:13px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--fg);width:100%}
+footer{padding:32px 0;color:var(--mut);font-size:14px;text-align:center;border-top:1px solid var(--bd)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:12px;background:#e8e1d6;border-radius:999px;outline:none;margin:20px 0;display:block}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:36px;height:36px;border-radius:50%;background:#e2553f;border:3px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.25);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:36px;height:36px;border-radius:50%;background:#e2553f;border:3px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.25);cursor:pointer}
+.seg{display:flex;gap:8px;margin-top:12px}
+.seg button{flex:1;padding:14px 0;border-radius:12px;border:2px solid var(--bd);background:var(--card);color:var(--fg);font:inherit;font-weight:800;font-size:16px;cursor:pointer;min-height:48px}
+.seg button.on{background:var(--ac);border-color:var(--ac);color:#fff}
+.ic{font-size:22px;width:44px;height:44px;display:grid;place-items:center;background:rgba(226,85,63,.1);border-radius:12px;margin:0 0 14px 0;line-height:1}
+.steps{counter-reset:s;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.steps .card::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ac);color:#fff;font-weight:800;margin-bottom:10px}
+#popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;padding:20px}
+#popup-overlay.show{display:flex}
+#popup-box{background:var(--card);border:1px solid var(--bd);border-radius:24px;padding:36px 28px;max-width:420px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.2);animation:pop .3s ease}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+#popup-box .check{width:64px;height:64px;background:#14524f;color:#fff;border-radius:50%;display:grid;place-items:center;font-size:32px;margin:0 auto 16px}
+/* CHAT */
+#hh-chat-btn{position:fixed;bottom:20px;right:20px;width:60px;height:60px;border-radius:50%;background:#14524f;color:#fff;border:0;box-shadow:0 8px 24px rgba(0,0,0,.2);cursor:pointer;z-index:10000;font-size:26px;display:grid;place-items:center}
+#hh-chat-win{display:none;position:fixed;bottom:90px;right:20px;width:380px;max-width:calc(100vw - 32px);height:520px;background:#fff;border:1px solid #e8e1d6;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.2);z-index:10000;flex-direction:column;overflow:hidden}
+#hh-chat-win.open{display:flex}
+#hh-chat-head{background:#14524f;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+#hh-chat-head b{font-size:15px}
+#hh-chat-head span{font-size:12px;opacity:.8}
+#hh-chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#fbf8f3}
+.hh-msg{max-width:85%;padding:10px 12px;border-radius:12px;font-size:14px;line-height:1.4;word-wrap:break-word}
+.hh-msg.ai{background:#fff;border:1px solid #e8e1d6;align-self:flex-start}
+.hh-msg.user{background:#e2553f;color:#fff;align-self:flex-end}
+#hh-chat-input{display:flex;gap:8px;padding:12px;border-top:1px solid #e8e1d6;background:#fff}
+#hh-chat-input input{flex:1;padding:10px 12px;border-radius:999px;border:1px solid #e8e1d6;font:inherit;font-size:14px}
+#hh-chat-input button{background:#14524f;color:#fff;border:0;border-radius:999px;padding:10px 16px;font-weight:700;cursor:pointer}
+.hh-quick{display:flex;flex-wrap:wrap;gap:6px}
+.hh-quick button{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid #e8e1d6;background:#fff;cursor:pointer}
+@media(max-width:700px){
+.w{padding:0 16px}
+.btns{flex-direction:column;align-items:stretch}
+.btns .btn{width:100%;display:block}
+.tw{overflow:visible}
+table.cmp{min-width:0;background:none;border-radius:0}
+table.cmp, table.cmp tbody, table.cmp tr, table.cmp td{display:block;width:100%}
+table.cmp tr:first-child{display:none}
+table.cmp tr{background:var(--card);border:1px solid var(--bd);border-radius:16px;margin-bottom:12px;overflow:hidden}
+table.cmp td{border:0;padding:10px 16px}
+table.cmp td:first-child{font-weight:800;font-size:16px;padding-top:14px}
+table.cmp td[data-l]::before{content:attr(data-l);display:block;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);font-weight:600}
+table.cmp td:last-child{background:rgba(20,82,79,.08);padding-bottom:14px}
+.calc{grid-template-columns:1fr}
+.calc > div:last-child{order:-1;text-align:center;background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:20px}
+.pr{display:block;margin-top:4px}
+.ic{margin:0 auto 12px auto}
+.card{text-align:left}
+}
+</style>
+</head>
+<body>
+<div class="w">
+<nav><div class="logo">Hybel<span>hjelp</span></div><a class="btn" href="#kontakt">Kom i gang</a></nav>
+
+<header class="hero">
+<div class="pill">🎓 For utleiere med 1–5 hybler i Trondheim</div>
+<h1>Leieinntekt <em>uten</em> styret.</h1>
+<p class="lead">Du har allerede et hus du leier ut til studenter og hater å drive med. Vi tar meldingene, visningene, kontraktene, ryddingen, flyttevasken og kranglingen. Du beholder leieinntekten.</p>
+<p style="font-weight:700;margin:0 0 20px">Fra 1 500 kr/mnd per hus, alt inkludert</p>
+<div class="btns"><a class="btn" href="#kontakt">Få et gratis tilbud</a><a class="btn o" href="#regne">Regn ut hva du sparer</a></div>
+</header>
+
+<section style="padding-top:0"><div class="band"><p>«Du får fortsatt 32 000 kr i måneden. Vi tar 2 000 kr for at du slipper å gjøre noe.»</p></div></section>
+
+<section>
+<h2>Alt du hater med å leie ut, gjort for deg</h2>
+<p class="sub">Studentene sliter sjelden med skittent gulv. Problemet er kjøkkenet som ligner et bombenedslag, full søppel og oppvask som står i tre dager. Vi tar ansvar for alt dette, og det er inkludert i månedsprisen.</p>
+<div class="grid">
+<div class="card"><div class="ic">💬</div><h3>Slipp leietakermeldingene</h3><p>AI-assistenten svarer alle meldinger på Finn og fra leietakere døgnet rundt, også om hvor vaskemaskinen står.</p></div>
+<div class="card"><div class="ic">📢</div><h3>Vi finner ny leietaker</h3><p>Gode bilder og sterk tekst på Finn. Vi holder visningene og finner nye leietakere hver gang noen flytter ut.</p></div>
+<div class="card"><div class="ic">📄</div><h3>Kontrakter og depositum</h3><p>Leieavtaler, depositumskonto og inn- og utflyttingssjekk. Alt ordnet og dokumentert.</p></div>
+<div class="card"><div class="ic">🧹</div><h3>Slutt på krangling om fellesarealene</h3><p>Vi rydder og vasker fellesareal hver måned. Søppel, oppvask og bad er inkludert. Kranglingen tar slutt.</p></div>
+<div class="card"><div class="ic">🔧</div><h3>Feil og håndverkere</h3><p>Vi tar imot feilmeldinger fra studentene og bestiller håndverker. Du får beskjed før noe koster penger.</p></div>
+<div class="card"><div class="ic">📊</div><h3>«Sånn gikk det i huset ditt»</h3><p>Månedlig oppgjør med leie inn, kostnader ut og hva som har skjedd i huset.</p></div>
+<div class="card"><div class="ic">📦</div><h3>Flyttevask ved utflytting</h3><p>Når en student flytter ut, vasker vi rommet grundig før neste kommer inn. Inkludert i prisen.</p></div>
+<div class="card"><div class="ic">⚖</div><h3>Utkastelse og inkasso</h3><p>Betaler ikke leietakeren? Vi følger opp purring, inkasso og utkastelse. Du slipper konfrontasjonen.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Inkludert i månedsprisen: <span class="pr">1&nbsp;500–2&nbsp;000&nbsp;kr&nbsp;per&nbsp;hus</span></h2>
+<p class="sub">Ingen tilleggsfakturaer for det du egentlig trenger. Dette får du hver måned.</p>
+<div class="card"><ul class="ck" style="grid-template-columns:1fr">
+<li><b>Alle meldinger</b> på Finn og fra leietakere. AI svarer på 2 minutter.</li>
+<li><b>Visninger</b> og innhenting av nye leietakere ved utflytting.</li>
+<li><b>Kontrakter, depositum</b> og inn- og utflyttingssjekk.</li>
+<li><b>Månedlig rydding og vask av fellesareal:</b> kjøkken, bad, gang og stue.</li>
+<li><b>Feilmeldinger</b> mottas og håndverker bestilles.</li>
+<li><b>Månedlig oppgjør:</b> «Sånn gikk det i huset ditt».</li>
+<li><b>Flyttevask ved utflytting</b> av rommet.</li>
+<li><b>Utkastelse og inkasso</b> ved manglende betaling.</li>
+</ul></div>
+<p class="sub" style="margin:14px 0 0;font-size:14px">Større oppussing og reparasjoner ligger utenfor månedsprisen, men vi ordner det og gir deg tilbud først.</p>
+</section>
+
+<section id="regne">
+<h2>Regn ut hva det koster deg</h2>
+<p class="sub">Hva er en rolig hverdag verdt for deg?</p>
+<div class="card calc">
+<div>
+<label for="leie" style="display:block;font-weight:700;margin-bottom:4px">Månedsleie per hus: <span id="lv">16 000</span> kr</label>
+<input id="leie" type="range" min="5000" max="60000" step="1000" value="16000" inputmode="numeric">
+<label style="display:block;margin-top:8px;font-weight:700">Antall hus:</label>
+<div class="seg" id="seg"><button type="button" data-n="1" class="on">1 hus</button><button type="button" data-n="2">2 hus</button><button type="button" data-n="3">3 hus</button><button type="button" data-n="4">4 hus</button><button type="button" data-n="5">5 hus</button></div>
+<p style="color:var(--mut);font-size:13px;margin:14px 0 0">Under 20 000 kr leie per hus er prisen 1 500 kr/mnd per hus. Fra 20 000 kr er prisen 2 000 kr/mnd per hus.</p>
+</div>
+<div>
+<div style="color:var(--mut);font-size:14px">Din pris hos oss, alt inkludert</div>
+<div class="big"><span id="pris">1 500</span> kr/mnd</div>
+<div style="margin-top:14px;color:var(--mut)">Total leieinntekt: <b id="tot" style="color:var(--fg)"></b></div>
+<div style="color:var(--mut)">Du beholder ca. <b id="beh" style="color:var(--ac2)"></b> før øvrige kostnader.</div>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Hybelhjelp vs. tradisjonell forvalter</h2>
+<p class="sub">Ingen skjulte vilkår. Bare en enklere avtale.</p>
+<div class="tw"><table class="cmp">
+<tr><th></th><th>Tradisjonell forvalter</th><th>Hybelhjelp</th></tr>
+<tr><td>Pris</td><td data-l="Tradisjonell">Ca. 3 000 kr/mnd, fast</td><td data-l="Hybelhjelp">1 500–2 000 kr/mnd per hus</td></tr>
+<tr><td>Svar til studenter</td><td data-l="Tradisjonell">Innen 2 virkedager</td><td data-l="Hybelhjelp">Innen 2 min - AI assistent 24/7</td></tr>
+<tr><td>Fellesareal</td><td data-l="Tradisjonell">Ikke inkludert</td><td data-l="Hybelhjelp">Rydding + vask hver mnd, inkludert</td></tr>
+<tr><td>Flyttevask</td><td data-l="Tradisjonell">Ekstra kostnad</td><td data-l="Hybelhjelp">Inkludert ved utflytting</td></tr>
+<tr><td>Utkastelse / inkasso</td><td data-l="Tradisjonell">Ofte ekstra</td><td data-l="Hybelhjelp">Oppfølging inkludert</td></tr>
+<tr><td>Binding</td><td data-l="Tradisjonell">Ofte 12 måneder</td><td data-l="Hybelhjelp">Ingen. Si opp når som helst</td></tr>
+</table></div>
+</section>
+
+<section>
+<h2>Slik kommer du i gang</h2>
+<div class="steps">
+<div class="card"><h3>Ta kontakt</h3><p>Send oss noen linjer om huset og hvordan du leier ut i dag.</p></div>
+<div class="card"><h3>Vi overtar</h3><p>Vi tar over Finn-annonsen, meldingene og kontraktene. Du gjør ingenting.</p></div>
+<div class="card"><h3>Du får leien</h3><p>Utbetaling hver måned med enkelt oppgjør. Avslutt når du vil.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Passer perfekt hvis du…</h2><br>
+<ul class="ck">
+<li>leier ut hybler eller hus til studenter</li>
+<li>er lei av 40 meldinger på Finn</li>
+<li>bor et annet sted enn boligen</li>
+<li>ikke vil binde deg til 12 måneder</li>
+<li>har 1–5 boenheter</li>
+<li>vil ha noen som faktisk tar telefonen</li>
+</ul>
+</section>
+
+<section>
+<h2>Ofte stilte spørsmål – som utleier</h2><br>
+<details><summary>Hva gjør dere for meg som utleier?</summary><p>Vi driver utleien: annonsering på Finn, alle henvendelser, visninger, leiekontrakter med BankID, depositumskonto, vask av fellesarealer, oppfølging av feil og månedlig oppgjør. Du beholder leien.</p></details>
+<details><summary>Hva koster det?</summary><p>1 500 kr/mnd per hus under 20 000 kr leie, 2 000 kr/mnd over. Alt på listen «Inkludert i månedsprisen» er med. Ingen skjulte tillegg. Du får et fast tilbud før vi starter.</p></details>
+<details><summary>Er det bindingstid?</summary><p>Nei. Ingen binding. Si opp når som helst. Vi må levere hver måned, ellers går du.</p></details>
+<details><summary>Vasker og rydder dere fellesarealet?</summary><p>Ja - hver måned: kjøkken, bad, gang og stue. Søppel, oppvask, flater, gulv og bad. Det er det som stopper kranglingen. Private rom vaskes kun ved utflytting.</p></details>
+<details><summary>Hva innebærer den månedlige ryddingen?</summary><p>En vedlikeholdsvask av fellesarealene. Vi tømmer søppel i fellesareal, rydder benkeplater, tørker flater og vasker gulv og bad. Målet er at huset holder seg presentabelt.</p></details>
+<details><summary>Er flyttevask inkludert?</summary><p>Ja, flyttevask ved utflytting er inkludert i månedsprisen. Vi vasker rommet grundig før neste flytter inn.</p></details>
+<details><summary>Hva hvis en leietaker ikke betaler?</summary><p>Vi følger opp med purring, inkasso og om nødvendig utkastelse. Det er inkludert i prisen. Du slipper konfrontasjonen.</p></details>
+<details><summary>Hvem svarer jeg som utleier?</summary><p>Du ringer direkte til Tommy på 73 88 XX XX – ingen robot. Chatten her på siden er for deg som utleier som lurer på pris, inkludering og binding før du bestemmer deg.</p></details>
+<details><summary>Hvordan får jeg pengene?</summary><p>Leietakerne betaler leien direkte til din konto, akkurat som i dag. Vi fakturerer 1 500–2 000 kr per hus per måned for forvaltningen, med et enkelt månedlig oppgjør.</p></details>
+</section>
+
+<section id="kontakt" style="text-align:center">
+<h2>Klar for å slippe å drive med det?</h2>
+<p class="sub" style="margin:0 auto 24px">Du som utleier – send inn skjemaet eller ring oss direkte. Vi tar telefonen og gir deg et fast tilbud innen 24t.<br>Chatten nede til høyre svarer på alle utleier-spørsmål om pris, binding og hva som er inkludert.</p>
+<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px">
+<div style="background:#fff;border:1px solid #e8e1d6;border-radius:12px;padding:12px 16px;text-align:left;min-width:260px"><div style="font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:#5c6b6f;font-weight:700">Telefon - Sonetel (viderekobles til Tommy)</div><div style="font-weight:800">73 88 XX XX</div><div style="font-size:13px;color:#5c6b6f">For utleiere – vi tar telefonen</div></div>
+<div style="background:#14524f;color:#fff;border-radius:12px;padding:12px 16px;text-align:left;min-width:260px"><div style="font-size:12px;text-transform:uppercase;letter-spacing:.05em;opacity:.8;font-weight:700">Utleier-chat - 24/7 (gratis)</div><div style="font-weight:800">💬 Nede til høyre – spør om pris, binding, vask</div><div style="font-size:13px;opacity:.9">Svarer deg som utleier på 2 sek</div></div>
+</div>
+<form action="https://splitforms.com/api/submit" method="POST" id="f" style="display:grid;gap:12px;max-width:520px;margin:0 auto">
+<input type="hidden" name="access_key" value="99885e6d83fa44108f5af7291e50b4d4">
+<input type="hidden" name="_subject" value="Ny forespørsel fra hybelhjelp.no">
+<input type="hidden" name="_redirect" value="https://hybelhjelp.no">
+<input type="text" name="_gotcha" style="display:none">
+<input name="Navn" id="n" placeholder="Navn *" required>
+<input name="E-post" id="e" type="email" placeholder="E-post *" required>
+<input name="Telefon" id="t" placeholder="Telefon (valgfritt)">
+<textarea name="Melding" id="m" rows="4" placeholder="Fortell kort om huset (antall hybler, område) og hva du ønsker hjelp med"></textarea>
+<button class="btn" type="submit">Send inn</button>
+</form>
+</section>
+</div>
+
+<footer>© 2026 Hybelhjelp · Trondheim · <a href="mailto:hei@hybelhjelp.no" style="color:inherit">hei@hybelhjelp.no</a><br><span style="font-size:12px">For utleiere: 73 88 XX XX (Trondheim - Sonetel, viderekobles til Tommy) · Utleier-chat 24/7 på nettsiden</span></footer>
+
+<div id="popup-overlay" onclick="if(event.target===this)closePopup()">
+<div id="popup-box">
+<div class="check">✓</div>
+<h3>Takk!</h3>
+<p>Vi tar kontakt innen 24t</p>
+<button class="btn" id="popup-close" onclick="closePopup()">Lukk</button>
+</div>
+</div>
+
+<!-- CHAT WIDGET - UTLEIER FOKUS - IKKE STUDENT -->
+<button id="hh-chat-btn" onclick="document.getElementById('hh-chat-win').classList.toggle('open')">💬</button>
+<div id="hh-chat-win">
+<div id="hh-chat-head"><div><b>Hybelhjelp – Utleierhjelp</b><br><span>Svarer på utleier-spørsmål 24/7</span></div><div style="display:flex;gap:8px"><button onclick="hhEndChat()" title="Avslutt og lagre" style="background:rgba(255,255,255,.15);border:0;color:#fff;font-size:11px;padding:4px 8px;border-radius:999px;cursor:pointer">Avslutt</button><button onclick="document.getElementById('hh-chat-win').classList.remove('open')" style="background:none;border:0;color:#fff;font-size:20px;cursor:pointer">×</button></div></div>
+<div id="hh-chat-body">
+<div class="hh-msg ai">Hei! Jeg er her for deg som vurderer å sette bort utleien 🏠<br><br>Jeg svarer på pris, hva som er inkludert, binding, vask, flyttevask, inkasso og hvordan vi kommer i gang – uten at du må ringe.<br><br>Hva lurer du på som utleier?</div>
+<div class="hh-quick">
+<button onclick="hhSend('Hva koster det?')">Hva koster det?</button>
+<button onclick="hhSend('Hva gjør dere for meg?')">Hva gjør dere?</button>
+<button onclick="hhSend('Er det binding?')">Binding?</button>
+<button onclick="hhSend('Hva med vask og flyttevask?')">Vask?</button>
+</div>
+</div>
+<div id="hh-chat-input">
+<input id="hh-input" placeholder="Spør som utleier..." onkeydown="if(event.key==='Enter')hhSend()">
+<button onclick="hhSend()">Send</button>
+</div>
+<!-- Samtykke-dialog for full transkript - UTLEIER -->
+<div id="hh-consent" style="display:none;position:absolute;inset:0;background:rgba(251,248,243,.97);backdrop-filter:blur(6px);padding:20px;flex-direction:column;justify-content:center;gap:12px;z-index:5">
+  <h3 style="margin:0;font-size:18px">Vil du at vi skal følge opp?</h3>
+  <p style="margin:0;font-size:14px;color:#5c6b6f;line-height:1.4">Du har stilt noen gode spørsmål som utleier. Vil du at Tommy skal sende deg et konkret tilbud basert på dette?</p>
+  <input id="hh-email" placeholder="Din e-post (for tilbud)" style="font:inherit;padding:10px 12px;border-radius:10px;border:1px solid #e8e1d6;font-size:14px">
+  <label style="font-size:12px;color:#5c6b6f;display:flex;gap:6px;align-items:start"><input type="checkbox" id="hh-gdpr" checked> Ja, jeg vil at Hybelhjelp lagrer spørsmålene mine og sender meg tilbud.</label>
+  <div style="display:flex;gap:8px">
+    <button onclick="hhSendTranscript(true)" style="flex:1;background:#14524f;color:#fff;border:0;border-radius:999px;padding:10px 14px;font-weight:700;cursor:pointer;font-size:14px">Ja, send forespørsel</button>
+    <button onclick="hhSendTranscript(false)" style="flex:1;background:#fff;border:1px solid #e8e1d6;border-radius:999px;padding:10px 14px;font-weight:700;cursor:pointer;font-size:14px">Nei, bare les</button>
+  </div>
+  <button onclick="document.getElementById('hh-consent').style.display='none'" style="background:none;border:0;color:#5c6b6f;font-size:12px;cursor:pointer;text-decoration:underline">Fortsett å spørre</button>
+</div>
+</div>
+
+<script>
+// --- POPUP + FORM ---
+function closePopup(){var el=document.getElementById('popup-overlay');if(el) el.classList.remove('show');}
+function showPopup(){var el=document.getElementById('popup-overlay');if(el) el.classList.add('show');}
+var formEl = document.getElementById('f');
+if(formEl){
+formEl.addEventListener('submit', async function(e){
+e.preventDefault();
+var btn = this.querySelector('button[type="submit"]');
+if(!btn) return;
+var origText = btn.textContent;
+btn.textContent = 'Sender...';
+btn.disabled = true;
+try{
+var fd = new FormData(this);
+var res = await fetch(this.action, {method:'POST', body:fd, headers:{'Accept':'application/json'}});
+if(res.ok){ this.reset(); showPopup(); } else { this.submit(); }
+}catch(err){ this.submit(); }
+finally{ btn.textContent = origText; btn.disabled = false; }
+});
+}
+
+// --- KALKULATOR ---
+(function(){
+function nok(x){return Math.round(x).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00a0')}
+var leieEl = document.getElementById('leie');
+var lvEl = document.getElementById('lv');
+var prisEl = document.getElementById('pris');
+var totEl = document.getElementById('tot');
+var behEl = document.getElementById('beh');
+var N = 1;
+function updateTrack(){
+if(!leieEl) return;
+var min = parseInt(leieEl.min,10);
+var max = parseInt(leieEl.max,10);
+var val = parseInt(leieEl.value,10);
+var pct = ((val-min)/(max-min))*100;
+var fillPct = Math.min(100, pct + 2.8);
+leieEl.style.background = 'linear-gradient(to right, #e2553f 0%, #e2553f '+fillPct+'%, #e8e1d6 '+fillPct+'%, #e8e1d6 100%)';
+}
+function recalc(){
+if(!leieEl) return;
+var v = parseInt(leieEl.value,10) || 0;
+var per = v < 20000 ? 1500 : 2000;
+var p = per * N;
+var tot = v * N;
+if(lvEl) lvEl.textContent = nok(v);
+if(prisEl) prisEl.textContent = nok(p);
+if(totEl) totEl.textContent = nok(tot)+' kr/mnd';
+if(behEl) behEl.textContent = nok(tot-p)+' kr/mnd';
+updateTrack();
+}
+if(leieEl){
+leieEl.addEventListener('input', recalc, {passive:true});
+leieEl.addEventListener('change', recalc);
+leieEl.addEventListener('touchmove', recalc, {passive:true});
+}
+document.querySelectorAll('#seg button').forEach(function(btn){
+function setActive(){
+N = parseInt(btn.getAttribute('data-n'),10) || 1;
+document.querySelectorAll('#seg button').forEach(function(b){b.classList.remove('on')});
+btn.classList.add('on');
+recalc();
+}
+btn.addEventListener('click', setActive);
+btn.addEventListener('touchend', function(e){e.preventDefault();setActive();}, {passive:false});
+});
+recalc();
+document.querySelectorAll('a[href="#regne"]').forEach(function(a){
+a.addEventListener('click', function(e){
+e.preventDefault();
+var target = document.getElementById('regne');
+if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+});
+});
+})();
+
+// --- CHAT + TRANSKRIPT + GOOGLE SHEET (GRATIS) - UTLEIER FOKUS ---
+const hhKnowledge = {
+  "pris": "Vi tar 1 500 kr/mnd per hus hvis leien er under 20 000 kr, og 2 000 kr/mnd hvis over. Alt du hater er inkludert: Finn-meldinger, visninger, kontrakter, depositum, månedlig vask av fellesareal, flyttevask, feilmeldinger og inkasso. Ingen skjulte tillegg.",
+  "koster": "Vi tar 1 500 kr/mnd per hus hvis leien er under 20 000 kr, og 2 000 kr/mnd hvis over. Alt du hater er inkludert: Finn-meldinger, visninger, kontrakter, depositum, månedlig vask av fellesareal, flyttevask, feilmeldinger og inkasso. Ingen skjulte tillegg.",
+  "gjør": "Vi tar over hele dritten: Svarer på alle Finn-meldinger innen 2 min, holder visninger, skriver kontrakter med BankID, ordner depositumskonto, tar imot feilmeldinger, bestiller håndverker, vasker fellesareal hver mnd, flyttevask ved utflytting, og følger opp inkasso/utkastelse. Du får månedlig oppgjør og beholder leien. Du gjør ingenting.",
+  "inkludert": "Alt du trenger: Alle meldinger på Finn, visninger og nye leietakere, kontrakter og depositum, månedlig rydding/vask av kjøkken/bad/gang/stue, flyttevask, feilmeldinger + håndverker, og inkasso/utkastelse. Større oppussing er utenom, men vi ordner anbud.",
+  "binding": "Ingen binding. Si opp når som helst. Det er hele poenget - vi må levere hver måned, ellers stikker du. De tradisjonelle har 12 måneder binding.",
+  "vask": "Ja - fellesareal vaskes og ryddes hver måned: kjøkken, bad, gang, stue. Søppel, oppvask og flater. Det er det som gjør at kranglingen stopper. Private rom vaskes kun ved utflytting - det er flyttevasken.",
+  "flyttevask": "Ja, flyttevask er inkludert når en student flytter ut. Vi vasker rommet grundig før neste flytter inn. Du slipper å krangle om depositum for vask.",
+  "fellesareal": "Fellesareal er inkludert hver måned. Vi rydder kjøkken, bad, gang, stue. Det er vedlikeholdsvask - ikke hovedrengjøring, men nok til at huset holder seg presentabelt og at ingen klager.",
+  "inkasso": "Betaler ikke leietakeren? Vi tar purring, inkasso og utkastelse. Det er inkludert. Du slipper konfrontasjonen. Vi følger Husleieloven.",
+  "utkastelse": "Betaler ikke leietakeren? Vi tar purring, inkasso og utkastelse. Det er inkludert. Du slipper konfrontasjonen.",
+  "hvordan": "1) Du sender noen linjer om huset. 2) Vi overtar Finn-annonsen, meldingene og kontraktene. 3) Du får leien hver måned med enkelt oppgjør. Du kan avslutte når du vil.",
+  "komme i gang": "1) Du sender noen linjer om huset. 2) Vi overtar Finn-annonsen, meldingene og kontraktene. 3) Du får leien hver måned med enkelt oppgjør.",
+  "utleier": "Du er i målgruppen hvis du leier ut 1-5 hybler/hus til studenter i Trondheim, er lei av 40 meldinger på Finn, bor et annet sted enn boligen, og vil ha noen som faktisk tar telefonen på 73 88 XX XX.",
+  "default": "Godt spørsmål som utleier! Jeg svarer på pris, hva som er inkludert, binding, vask, flyttevask, inkasso og hvordan vi kommer i gang. Si litt mer - f.eks 'hva koster det for 2 hus?' eller 'hva hvis leietaker ikke betaler?' så svarer jeg konkret."
+};
+
+let hhTranscript = [];
+const GOOGLE_SHEET_URL = ""; // LIM INN DIN APPS SCRIPT URL HER: https://script.google.com/macros/s/.../exec - la stå tom hvis du kun vil bruke Splitforms
+
+function hhNow(){ return new Date().toLocaleString("nb-NO", {timeZone: "Europe/Oslo"}); }
+
+function hhSend(text){
+  const input = document.getElementById('hh-input');
+  const body = document.getElementById('hh-chat-body');
+  const msg = text || input.value.trim();
+  if(!msg) return;
+  body.insertAdjacentHTML('beforeend', `<div class="hh-msg user">${msg}</div>`);
+  input.value = '';
+  hhTranscript.push({role:"Utleier", text: msg, time: hhNow()});
+  body.scrollTop = body.scrollHeight;
+
+  setTimeout(()=>{
+    const lower = msg.toLowerCase();
+    let key = 'default';
+    if(lower.includes('pris') || lower.includes('koster') || lower.includes('kr')) key='pris';
+    else if(lower.includes('gjør') || lower.includes('inkludert') || lower.includes('inneholder')) key='inkludert';
+    else if(lower.includes('binding') || lower.includes('oppsigelse') || lower.includes('avslutte')) key='binding';
+    else if(lower.includes('vask') && lower.includes('flytte')) key='flyttevask';
+    else if(lower.includes('vask') || lower.includes('fellesareal') || lower.includes('rydding')) key='vask';
+    else if(lower.includes('flyttevask')) key='flyttevask';
+    else if(lower.includes('inkasso') || lower.includes('utkastelse') || lower.includes('betaler ikke')) key='inkasso';
+    else if(lower.includes('hvordan') || lower.includes('komme i gang') || lower.includes('starte')) key='hvordan';
+    else if(lower.includes('utleier') || lower.includes('passer')) key='utleier';
+    const answer = hhKnowledge[key];
+    body.insertAdjacentHTML('beforeend', `<div class="hh-msg ai">${answer}</div>`);
+    hhTranscript.push({role:"AI-Utleierhjelp", text: answer, time: hhNow()});
+    body.scrollTop = body.scrollHeight;
+  }, 600);
+}
+
+function hhEndChat(){
+  if(hhTranscript.length === 0){
+    document.getElementById('hh-chat-win').classList.remove('open');
+    return;
+  }
+  document.getElementById('hh-consent').style.display='flex';
+}
+
+function hhFormatTranscript(){
+  return hhTranscript.map(l => `[${l.time}] ${l.role}: ${l.text}`).join("\n\n");
+}
+
+function hhSendTranscript(sendToOwner){
+  const consentEl = document.getElementById('hh-consent');
+  const emailEl = document.getElementById('hh-email');
+  const gdprEl = document.getElementById('hh-gdpr');
+  const body = document.getElementById('hh-chat-body');
+  
+  if(!sendToOwner){
+    hhTranscript = [];
+    body.innerHTML = `<div class="hh-msg ai">Samtalen er slettet. Takk for at du chattet! 🏠<br><br>Trenger du oss igjen? Ring 73 88 XX XX eller åpne chatten på nytt.</div>`;
+    consentEl.style.display='none';
+    setTimeout(()=>{ document.getElementById('hh-chat-win').classList.remove('open'); }, 1500);
+    return;
+  }
+
+  if(!gdprEl.checked){
+    alert("Du må samtykke for å sende transkriptet.");
+    return;
+  }
+
+  const transcriptText = hhFormatTranscript();
+  const userEmail = emailEl.value.trim();
+
+  // IKKE Splitforms for chatten - kun Google Sheet (100% gratis)
+  // Kontakt-skjemaet bruker fortsatt Splitforms, men chatten går kun hit:
+
+  if(!GOOGLE_SHEET_URL){
+    alert("Google Sheet URL er ikke satt. Legg inn URL i GOOGLE_SHEET_URL øverst i scriptet.");
+    // Viser transkriptet lokalt så du ser at det funker
+    body.innerHTML += `<div class="hh-msg ai">Transkript (test - Sheet ikke satt):<br><pre style="white-space:pre-wrap;font-size:11px;margin-top:8px">${transcriptText}</pre></div>`;
+    body.scrollTop = body.scrollHeight;
+    return;
+  }
+
+  // Send til Google Sheet via Apps Script - 100% gratis, ingen Zapier, ingen Splitforms
+  fetch(GOOGLE_SHEET_URL, {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify({
+      "E-post": userEmail,
+      Melding: transcriptText,
+      antall: hhTranscript.length,
+      side: location.href,
+      tid: hhNow(),
+      samtykke: "Ja"
+    })
+  });
+
+  body.innerHTML += `<div class="hh-msg ai" style="background:#14524f;color:#fff;border-color:#14524f">✅ Takk! Hele samtalen er lagret. Vi følger opp${userEmail ? " på "+userEmail : ""} innen 24t.</div>`;
+  body.scrollTop = body.scrollHeight;
+  hhTranscript = [];
+  setTimeout(()=>{ consentEl.style.display='none'; }, 900);
+}
+</script>
+
+<!-- 
+GOOGLE APPS SCRIPT - LIM INN I SHEET -> Utvidelser -> Apps Script
+
+function doPost(e) {
+  try {
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    const data = JSON.parse(e.postData.contents);
+    sheet.appendRow([
+      new Date(),
+      data["E-post"] || "",
+      "Ja",
+      data.antall || "",
+      data.Melding || "",
+      data.side || "",
+      data.tid || ""
+    ]);
+    return ContentService.createTextOutput(JSON.stringify({status:"ok"})).setMimeType(ContentService.MimeType.JSON);
+  } catch(err) {
+    return ContentService.createTextOutput(JSON.stringify({error: err.message})).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+function doGet(){ return ContentService.createTextOutput("Hybelhjelp logger aktiv"); }
+
+Første rad i Sheet: Dato | E-post | Samtykke | Antall | Full transkript | Side | Tid
+Deploy som Nettapp -> Alle har tilgang -> kopier URL til GOOGLE_SHEET_URL over
+-->
+
+</body>
+</html>
