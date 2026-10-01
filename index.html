@@ -270,7 +270,10 @@ table.cmp td:last-child{background:rgba(20,82,79,.08);padding-bottom:14px}
 </div>
 
 <script>
-// --- POPUP + FORM - NÅ 100% GOOGLE SHEETS ---
+// URL til Google Sheets - MÅ ligge øverst så begge skjemaer finner den
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyRLs552X0C38jBpdlO39-LGME0ZLxdQY53EF_pLbEkMPkc6ev9T9VNfmQlwgEMmm8/exec";
+
+// --- POPUP + FORM - NÅ 100% GOOGLE SHEETS - IKKE SPLITFORMS ---
 function closePopup(){var el=document.getElementById('popup-overlay');if(el) el.classList.remove('show');}
 function showPopup(){var el=document.getElementById('popup-overlay');if(el) el.classList.add('show');}
 var formEl = document.getElementById('f');
@@ -400,7 +403,6 @@ const hhKnowledge = {
 };
 
 let hhTranscript = [];
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyRLs552X0C38jBpdlO39-LGME0ZLxdQY53EF_pLbEkMPkc6ev9T9VNfmQlwgEMmm8/exec";
 
 function hhNow(){ return new Date().toLocaleString("nb-NO", {timeZone: "Europe/Oslo"}); }
 
