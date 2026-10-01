@@ -215,16 +215,14 @@ table.cmp td:last-child{background:rgba(20,82,79,.08);padding-bottom:14px}
 <div style="background:#fff;border:1px solid #e8e1d6;border-radius:12px;padding:12px 16px;text-align:left;min-width:260px"><div style="font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:#5c6b6f;font-weight:700">Telefon - Sonetel (viderekobles til Tommy)</div><div style="font-weight:800">73 88 XX XX</div><div style="font-size:13px;color:#5c6b6f">For utleiere – vi tar telefonen</div></div>
 <div style="background:#14524f;color:#fff;border-radius:12px;padding:12px 16px;text-align:left;min-width:260px"><div style="font-size:12px;text-transform:uppercase;letter-spacing:.05em;opacity:.8;font-weight:700">Utleier-chat - 24/7 (gratis)</div><div style="font-weight:800">💬 Nede til høyre – spør om pris, binding, vask</div><div style="font-size:13px;opacity:.9">Svarer deg som utleier på 2 sek</div></div>
 </div>
-<form action="https://splitforms.com/api/submit" method="POST" id="f" style="display:grid;gap:12px;max-width:520px;margin:0 auto">
-<input type="hidden" name="access_key" value="99885e6d83fa44108f5af7291e50b4d4">
-<input type="hidden" name="_subject" value="Ny forespørsel fra hybelhjelp.no">
-<input type="hidden" name="_redirect" value="https://hybelhjelp.no">
-<input type="text" name="_gotcha" style="display:none">
+<form id="f" style="display:grid;gap:12px;max-width:520px;margin:0 auto">
+<input type="text" name="_gotcha" id="gotcha" style="display:none" tabindex="-1" autocomplete="off">
 <input name="Navn" id="n" placeholder="Navn *" required>
 <input name="E-post" id="e" type="email" placeholder="E-post *" required>
 <input name="Telefon" id="t" placeholder="Telefon (valgfritt)">
-<textarea name="Melding" id="m" rows="4" placeholder="Fortell kort om huset (antall hybler, område) og hva du ønsker hjelp med"></textarea>
-<button class="btn" type="submit">Send inn</button>
+<textarea name="Melding" id="m" rows="4" placeholder="Fortell kort om huset (antall hybler, område) og hva du ønsker hjelp med" required></textarea>
+<button class="btn" type="submit" id="mainBtn">Send inn</button>
+<p id="formMsg" style="font-size:13px;color:#5c6b6f;display:none"></p>
 </form>
 </section>
 </div>
@@ -272,23 +270,58 @@ table.cmp td:last-child{background:rgba(20,82,79,.08);padding-bottom:14px}
 </div>
 
 <script>
-// --- POPUP + FORM ---
+// --- POPUP + FORM - NÅ 100% GOOGLE SHEETS ---
 function closePopup(){var el=document.getElementById('popup-overlay');if(el) el.classList.remove('show');}
 function showPopup(){var el=document.getElementById('popup-overlay');if(el) el.classList.add('show');}
 var formEl = document.getElementById('f');
 if(formEl){
 formEl.addEventListener('submit', async function(e){
 e.preventDefault();
-var btn = this.querySelector('button[type="submit"]');
-if(!btn) return;
+// Anti-spam sjekker
+const lastMain = localStorage.getItem('hh_last_main_sent');
+if(lastMain && (Date.now() - parseInt(lastMain)) < 2*60*1000){
+  document.getElementById('formMsg').style.display='block';
+  document.getElementById('formMsg').textContent='Du har allerede sendt. Vi tar kontakt innen 24t – vent 2 min før ny sending.';
+  return;
+}
+// Honeypot - hvis bot fyller ut skjult felt, avbryt
+if(document.getElementById('gotcha').value){
+  console.log("Bot blokkert - honeypot");
+  showPopup(); // Lur boten til å tro det gikk
+  return;
+}
+var btn = document.getElementById('mainBtn');
 var origText = btn.textContent;
 btn.textContent = 'Sender...';
 btn.disabled = true;
+
+const data = {
+  type: "kontakt-skjema",
+  Navn: document.getElementById('n').value.trim(),
+  "E-post": document.getElementById('e').value.trim(),
+  Telefon: document.getElementById('t').value.trim(),
+  Melding: document.getElementById('m').value.trim(),
+  side: location.href,
+  tid: new Date().toLocaleString("nb-NO", {timeZone: "Europe/Oslo"}),
+  _gotcha: "" // for ekstra sjekk i Apps Script
+};
+
 try{
-var fd = new FormData(this);
-var res = await fetch(this.action, {method:'POST', body:fd, headers:{'Accept':'application/json'}});
-if(res.ok){ this.reset(); showPopup(); } else { this.submit(); }
-}catch(err){ this.submit(); }
+  await fetch(GOOGLE_SHEET_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {"Content-Type": "text/plain;charset=utf-8"},
+    body: JSON.stringify(data)
+  });
+  localStorage.setItem('hh_last_main_sent', Date.now().toString());
+  formEl.reset();
+  showPopup();
+  console.log("Kontaktskjema sendt til Sheet!");
+}catch(err){
+  console.error(err);
+  document.getElementById('formMsg').style.display='block';
+  document.getElementById('formMsg').textContent='Noe gikk galt. Ring 73 88 XX XX direkte.';
+}
 finally{ btn.textContent = origText; btn.disabled = false; }
 });
 }
@@ -367,7 +400,7 @@ const hhKnowledge = {
 };
 
 let hhTranscript = [];
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyRLs552X0C38jBpdlO39-LGME0ZLxdQY53EF_pLbEkMPkc6ev9T9VNfmQlwgEMmm8/exec"; // LIM INN DIN APPS SCRIPT URL HER: https://script.google.com/macros/s/.../exec - la stå tom hvis du kun vil bruke Splitforms
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyRLs552X0C38jBpdlO39-LGME0ZLxdQY53EF_pLbEkMPkc6ev9T9VNfmQlwgEMmm8/exec";
 
 function hhNow(){ return new Date().toLocaleString("nb-NO", {timeZone: "Europe/Oslo"}); }
 
@@ -426,6 +459,14 @@ function hhSendTranscript(sendToOwner){
     return;
   }
 
+  // Anti-spam: 5 min cooldown per nettleser
+  const lastSent = localStorage.getItem('hh_last_chat_sent');
+  if(lastSent && (Date.now() - parseInt(lastSent)) < 2*60*1000){
+    body.innerHTML += `<div class="hh-msg ai" style="background:#e2553f;color:#fff">⏳ Du har allerede sendt en forespørsel. Vent 2 min før du sender igjen.</div>`;
+    body.scrollTop = body.scrollHeight;
+    return;
+  }
+
   if(!gdprEl.checked){
     alert("Du må samtykke for å sende transkriptet.");
     return;
@@ -446,9 +487,12 @@ function hhSendTranscript(sendToOwner){
   }
 
   // Send til Google Sheet via Apps Script - 100% gratis, ingen Zapier, ingen Splitforms
+  console.log("Sender til Sheet:", GOOGLE_SHEET_URL, transcriptText.substring(0,100));
+  localStorage.setItem('hh_last_chat_sent', Date.now().toString());
   fetch(GOOGLE_SHEET_URL, {
     method: "POST",
     mode: "no-cors",
+    headers: {"Content-Type": "text/plain;charset=utf-8"},
     body: JSON.stringify({
       "E-post": userEmail,
       Melding: transcriptText,
@@ -457,7 +501,7 @@ function hhSendTranscript(sendToOwner){
       tid: hhNow(),
       samtykke: "Ja"
     })
-  });
+  }).then(()=>{ console.log("Sendt! Sjekk Sheet"); }).catch(e=>{ console.error("Feil ved sending", e); });
 
   body.innerHTML += `<div class="hh-msg ai" style="background:#14524f;color:#fff;border-color:#14524f">✅ Takk! Hele samtalen er lagret. Vi følger opp${userEmail ? " på "+userEmail : ""} innen 24t.</div>`;
   body.scrollTop = body.scrollHeight;
@@ -467,30 +511,100 @@ function hhSendTranscript(sendToOwner){
 </script>
 
 <!-- 
-GOOGLE APPS SCRIPT - LIM INN I SHEET -> Utvidelser -> Apps Script
+GOOGLE APPS SCRIPT - NY VERSJON - HÅNDTERER BÅDE SKJEMA OG CHAT - EKSTRA TRYGG
 
 function doPost(e) {
   try {
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    const data = JSON.parse(e.postData.contents);
-    sheet.appendRow([
-      new Date(),
-      data["E-post"] || "",
-      "Ja",
-      data.antall || "",
-      data.Melding || "",
-      data.side || "",
-      data.tid || ""
-    ]);
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var raw = e.postData ? e.postData.contents : "";
+    Logger.log(raw);
+    var data = {};
+    try { data = JSON.parse(raw); } catch(err) { data = e.parameter || {}; }
+
+    // --- ANTI-SPAM SJEKKER ---
+    // 1. Honeypot
+    if(data._gotcha && data._gotcha !== ""){
+      Logger.log("Bot blokkert - honeypot: " + data._gotcha);
+      return ContentService.createTextOutput(JSON.stringify({status:"bot blocked"})).setMimeType(ContentService.MimeType.JSON);
+    }
+    // 2. Tom e-post
+    if(!data["E-post"] || data["E-post"].length < 5 || !data["E-post"].includes("@")){
+      return ContentService.createTextOutput(JSON.stringify({status:"invalid email"})).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    var email = data["E-post"].toLowerCase().trim();
+    var now = new Date();
+
+    // 3. Sjekk om samme e-post har sendt siste 10 min (hindrer spam)
+    var sheetToUse;
+    var isKontakt = (data.type === "kontakt-skjema");
+
+    if(isKontakt){
+      // Kontakt-skjema går til egen fane "Kontakt" eller første ark hvis ikke finnes
+      sheetToUse = ss.getSheetByName("Kontakt") || ss.getSheetByName("Leads") || ss.getActiveSheet();
+      // Sjekk siste 20 rader for samme e-post
+      var lastRows = sheetToUse.getRange(Math.max(1, sheetToUse.getLastRow()-20), 2, 20, 1).getValues();
+      for(var i=0; i<lastRows.length; i++){
+        if(lastRows[i][0] && lastRows[i][0].toString().toLowerCase() === email){
+          var lastTime = sheetToUse.getRange(sheetToUse.getLastRow()-20+i+1, 1).getValue();
+          if(lastTime && (now - new Date(lastTime)) < 2*60*1000){
+            Logger.log("Spam blokkert - samme e-post for ofte: " + email);
+            return ContentService.createTextOutput(JSON.stringify({status:"rate limited"})).setMimeType(ContentService.MimeType.JSON);
+          }
+        }
+      }
+
+      sheetToUse.appendRow([
+        now,
+        email,
+        data.Navn || "",
+        data.Telefon || "",
+        data.Melding || "",
+        data.side || "",
+        data.tid || "",
+        "Kontakt-skjema"
+      ]);
+
+      // Send e-post til deg
+      MailApp.sendEmail({
+        to: "tommythanhliee@hotmail.com",
+        subject: "🏠 NY LEAD fra hybelhjelp.no - " + (data.Navn || email),
+        body: "Ny forespørsel fra hovedskjemaet:\n\nNavn: " + (data.Navn||"") + "\nE-post: " + email + "\nTelefon: " + (data.Telefon||"") + "\n\nMelding:\n" + (data.Melding||"") + "\n\nSide: " + (data.side||"") + "\nTid: " + (data.tid||"")
+      });
+
+    } else {
+      // Chat - går til "Chat" fane
+      sheetToUse = ss.getSheetByName("Chat") || ss.getSheetByName("Chatlogg") || ss.getActiveSheet();
+      sheetToUse.appendRow([
+        now,
+        email,
+        "Ja",
+        data.antall || "",
+        data.Melding || "",
+        data.side || "",
+        data.tid || "",
+        "Chat"
+      ]);
+
+      MailApp.sendEmail({
+        to: "tommythanhliee@hotmail.com",
+        subject: "💬 Ny chat fra hybelhjelp.no - " + email,
+        body: "Ny chat-transkript:\n\nFra: " + email + "\nAntall: " + (data.antall||"") + "\nSide: " + (data.side||"") + "\n\n--- TRANSKRIPT ---\n" + (data.Melding||"")
+      });
+    }
+
     return ContentService.createTextOutput(JSON.stringify({status:"ok"})).setMimeType(ContentService.MimeType.JSON);
   } catch(err) {
+    Logger.log("FEIL: " + err.message);
     return ContentService.createTextOutput(JSON.stringify({error: err.message})).setMimeType(ContentService.MimeType.JSON);
   }
 }
-function doGet(){ return ContentService.createTextOutput("Hybelhjelp logger aktiv"); }
+function doGet(){ return ContentService.createTextOutput("Hybelhjelp logger aktiv - klar for både skjema og chat"); }
 
-Første rad i Sheet: Dato | E-post | Samtykke | Antall | Full transkript | Side | Tid
-Deploy som Nettapp -> Alle har tilgang -> kopier URL til GOOGLE_SHEET_URL over
+Første gang: Lag 2 faner i Sheetet: "Kontakt" og "Chat"
+Rad 1 i Kontakt: Dato | E-post | Navn | Telefon | Melding | Side | Tid | Type
+Rad 1 i Chat: Dato | E-post | Samtykke | Antall | Full transkript | Side | Tid | Type
+Deploy som Nettapp -> Alle har tilgang -> NY VERSJON viktig!
 -->
 
 </body>
