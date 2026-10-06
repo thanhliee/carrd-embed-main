@@ -113,7 +113,7 @@ table.cmp td:last-child{background:rgba(20,82,79,.08);padding-bottom:14px}
 <h2>Alt du hater med å leie ut, gjort for deg</h2>
 <p class="sub">Studentene sliter sjelden med skittent gulv. Problemet er kjøkkenet som ligner et bombenedslag, full søppel og oppvask som står i tre dager. Vi tar ansvar for alt dette, og det er inkludert i månedsprisen.</p>
 <div class="grid">
-<div class="card"><div class="ic">💬</div><h3>Slipp leietakermeldingene</h3><p>AI-assistenten svarer på alle meldinger fra leietakere døgnet rundt, også om hvor vaskemaskinen står. Vi overtar ved behov.</p></div>
+<div class="card"><div class="ic">💬</div><h3>Slipp leietakermeldingene</h3><p>Beboerassistenten svarer på alle meldinger fra leietakere døgnet rundt, også om hvor vaskemaskinen står. Vi overtar ved behov.</p></div>
 <div class="card"><div class="ic">📢</div><h3>Vi finner ny leietaker</h3><p>Gode bilder og sterk tekst på Finn. Vi holder visningene og finner nye leietakere hver gang noen flytter ut.</p></div>
 <div class="card"><div class="ic">📄</div><h3>Kontrakter og depositum</h3><p>Leieavtaler, depositumskonto og inn- og utflyttingssjekk. Alt ordnet og dokumentert.</p></div>
 <div class="card"><div class="ic">🧹</div><h3>Slutt på krangling om fellesarealene</h3><p>Vi rydder og vasker fellesareal hver måned. Søppel, oppvask og bad er inkludert. Kranglingen tar slutt.</p></div>
@@ -128,7 +128,7 @@ table.cmp td:last-child{background:rgba(20,82,79,.08);padding-bottom:14px}
 <h2>Inkludert i månedsprisen: <span class="pr">1&nbsp;500–2&nbsp;000&nbsp;kr&nbsp;per&nbsp;hus</span></h2>
 <p class="sub">Ingen tilleggsfakturaer for det du egentlig trenger. Dette får du hver måned.</p>
 <div class="card"><ul class="ck" style="grid-template-columns:1fr">
-<li><b>Alle meldinger</b> fra leietakere. AI svarer på 2 minutter. Vi overtar ved behov.</li>
+<li><b>Alle meldinger</b> fra leietakere. Beboerassistent svarer på 2 minutter. Vi overtar ved behov.</li>
 <li><b>Visninger</b> og innhenting av nye leietakere ved utflytting.</li>
 <li><b>Kontrakter, depositum</b> og inn- og utflyttingssjekk.</li>
 <li><b>Månedlig rydding og vask av fellesareal:</b> kjøkken, bad, gang og stue.</li>
@@ -166,7 +166,7 @@ table.cmp td:last-child{background:rgba(20,82,79,.08);padding-bottom:14px}
 <div class="tw"><table class="cmp">
 <tr><th></th><th>Tradisjonell forvalter</th><th>Hybelhjelp</th></tr>
 <tr><td>Pris</td><td data-l="Tradisjonell">Ca. 3 000 kr/mnd, fast</td><td data-l="Hybelhjelp">1 500–2 000 kr/mnd per hus</td></tr>
-<tr><td>Svar til studenter</td><td data-l="Tradisjonell">Innen 2 virkedager</td><td data-l="Hybelhjelp">Innen 2 min - AI assistent 24/7</td></tr>
+<tr><td>Svar til studenter</td><td data-l="Tradisjonell">Innen 2 virkedager</td><td data-l="Hybelhjelp">Innen 2 min med Beboerassistent 24/7</td></tr>
 <tr><td>Fellesareal</td><td data-l="Tradisjonell">Ikke inkludert</td><td data-l="Hybelhjelp">Rydding + vask hver mnd, inkludert</td></tr>
 <tr><td>Flyttevask</td><td data-l="Tradisjonell">Ekstra kostnad</td><td data-l="Hybelhjelp">Inkludert ved utflytting</td></tr>
 <tr><td>Utkastelse / inkasso</td><td data-l="Tradisjonell">Ofte ekstra</td><td data-l="Hybelhjelp">Oppfølging inkludert</td></tr>
@@ -430,7 +430,7 @@ function hhSend(text){
     else if(lower.includes('utleier') || lower.includes('passer')) key='utleier';
     const answer = hhKnowledge[key];
     body.insertAdjacentHTML('beforeend', `<div class="hh-msg ai">${answer}</div>`);
-    hhTranscript.push({role:"AI-Utleierhjelp", text: answer, time: hhNow()});
+    hhTranscript.push({role:"Beboerhjelp", text: answer, time: hhNow()});
     body.scrollTop = body.scrollHeight;
   }, 600);
 }
